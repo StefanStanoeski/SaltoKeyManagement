@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaltoKeyManagement", "SaltoKeyManagement\SaltoKeyManagement.csproj", "{8B9059FC-CBC1-456F-B6E2-9AB4BCA9549E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaltoKeyManagement.Models", "SaltoKeyManagement.Models\SaltoKeyManagement.Models.csproj", "{887CED24-EF33-4BD4-805D-00A3B6457DD0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaltoKeyManagement.Data", "SaltoKeyManagement.Data\SaltoKeyManagement.Data.csproj", "{CD03F232-C0BC-4468-B56E-13739FA46E2B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaltoKeyManagement.Services", "SaltoKeyManagement.Services\SaltoKeyManagement.Services.csproj", "{205CF627-9416-44A6-A13E-6F17EF293C69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaltoKeyManagement.Test", "SaltoKeyManagement.Test\SaltoKeyManagement.Test.csproj", "{FE5D2724-611A-4712-9D55-E862500324E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B9059FC-CBC1-456F-B6E2-9AB4BCA9549E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B9059FC-CBC1-456F-B6E2-9AB4BCA9549E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B9059FC-CBC1-456F-B6E2-9AB4BCA9549E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B9059FC-CBC1-456F-B6E2-9AB4BCA9549E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{887CED24-EF33-4BD4-805D-00A3B6457DD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{887CED24-EF33-4BD4-805D-00A3B6457DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{887CED24-EF33-4BD4-805D-00A3B6457DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{887CED24-EF33-4BD4-805D-00A3B6457DD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD03F232-C0BC-4468-B56E-13739FA46E2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD03F232-C0BC-4468-B56E-13739FA46E2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD03F232-C0BC-4468-B56E-13739FA46E2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD03F232-C0BC-4468-B56E-13739FA46E2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{205CF627-9416-44A6-A13E-6F17EF293C69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{205CF627-9416-44A6-A13E-6F17EF293C69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{205CF627-9416-44A6-A13E-6F17EF293C69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{205CF627-9416-44A6-A13E-6F17EF293C69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE5D2724-611A-4712-9D55-E862500324E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE5D2724-611A-4712-9D55-E862500324E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE5D2724-611A-4712-9D55-E862500324E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE5D2724-611A-4712-9D55-E862500324E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0B2AEA34-7AB3-4096-B12B-692E276CCB37}
+	EndGlobalSection
+EndGlobal
