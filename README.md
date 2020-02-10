@@ -8,7 +8,7 @@ The way I approached the solution was to create the ability to create Door entri
 Also added audit logging of the timestamp when access to a door was granted.
 
 #### Authorization/Authentication
-Also included User registration and the user login is done using JwtTokens. Also have included refreshing tokens functionality.
+Included User registration and the user login is done using JwtTokens. Also have included refreshing tokens functionality.
 Chose this approach to allow ease of API access for any device as the JwtToken is being sent in the headers and allows for reduced need for logins.
 
 #### Database
@@ -16,3 +16,4 @@ Initially I opted for a code-first approach while utilizing EntityFramework on a
 
 #### Testing
 Included a few xUnit integration tests on the DoorsController covering a few different scenarios. To save time, opted to use an InMemory DB implementation instead of Setup & Teardown which is the more reliable approach as it tests the full integration with the DB.
+Used FluentValidation to optimize assertions and make them more intuitive for typing.
