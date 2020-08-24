@@ -6,7 +6,6 @@ using SaltoKeyManagement.Models.Contracts;
 using SaltoKeyManagement.Models.Domain;
 using SaltoKeyManagement.Models.Interfaces.Services.Identity;
 using SaltoKeyManagement.Models.Options;
-using SaltoKeyManagement.Services.Shared;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -17,18 +16,19 @@ using System.Threading.Tasks;
 
 namespace SaltoKeyManagement.Services.Identity
 {
-    public class IdentityService : BaseService, IIdentityServiceAsync
+    public class IdentityService : IIdentityServiceAsync
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly JwtSettings _jwtSettings;
         private readonly DataContext _dataContext;
+        private TokenValidationParameters _tokenValidationParameters;
 
         public IdentityService(UserManager<IdentityUser> userManager, JwtSettings jwtSettings, TokenValidationParameters tokenValidationParameters, DataContext dataContext)
-            :base(tokenValidationParameters)
         {
             _userManager = userManager;
             _jwtSettings = jwtSettings;
             _dataContext = dataContext;
+            _tokenValidationParameters = tokenValidationParameters;
         }
 
         public async Task<AuthenticationResult> LoginAsync(string email, string password)
@@ -217,6 +217,32 @@ namespace SaltoKeyManagement.Services.Identity
                 Token = tokenHandler.WriteToken(token),
                 RefreshToken = refreshToken.Token
             };
+        }
+
+        private ClaimsPrincipal GetPrincipalFromToken(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            try
+            {
+                var principal = tokenHandler.ValidateToken(token, _tokenValidationParameters, out var validatedToken);
+                if (!isJwtWithValidSecurityAlgorithm(validatedToken))
+                {
+                    return null;
+                }
+
+                return principal;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private bool isJwtWithValidSecurityAlgorithm(SecurityToken validatedToken)
+        {
+            return (validatedToken is JwtSecurityToken jwtSecurityToken) &&
+                jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase);
         }
     }
 }
