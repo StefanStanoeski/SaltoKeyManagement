@@ -1,4 +1,6 @@
-﻿using SaltoKeyManagement.Models.Domain;
+﻿using SaltoKeyManagement.Models.Contracts.Requests;
+using SaltoKeyManagement.Models.Contracts.Responses;
+using SaltoKeyManagement.Models.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +10,6 @@ namespace SaltoKeyManagement.Models.Interfaces.Services.Entrances
 {
     public interface IEntranceServiceAsync
     {
-        Task<AuthorizationResult> OpenDoorForUser(string doorId, string token);
+        Task<Entrance> OpenDoorForUser(string doorId, string UserId);
     }
 }

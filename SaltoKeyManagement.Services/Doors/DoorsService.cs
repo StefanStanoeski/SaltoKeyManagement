@@ -71,12 +71,12 @@ namespace SaltoKeyManagement.Services.Doors
 
         public async Task<Door> UpdateAsync(Door item)
         {
-            //var door = await GetByIdAsync(item.Id);
+            var door = await GetByIdAsync(item.Id);
 
-            //if (door == null)
-            //{
-            //    return null;
-            //}
+            if (door == null)
+            {
+                return null;
+            }
 
             _dataContext.DoorsDbSet.Update(item);
             var updated = await _dataContext.SaveChangesAsync();

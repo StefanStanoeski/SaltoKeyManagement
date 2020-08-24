@@ -29,26 +29,26 @@ namespace SaltoKeyManagement.Models.Contracts
 
         public static class Entrances
         {
-            public const string OpenGuestDoorForUser = 
-                Base + "/entrances/" + ClearanceClaims.User.Guest + "/{doorId}/{token}";
+            public const string OpenGuestDoorForUser = Base + "/entrances/" + 
+                ClearanceClaims.User.Guest + "/{doorId}";
 
             public const string OpenEmployeeDoorForUser = Base + "/entrances/" + 
-                ClearanceClaims.User.Employee + "/{doorId}/{token}";
+                ClearanceClaims.User.Employee + "/{doorId}";
 
             public const string OpenMaintenanceDoorForUser = Base + "/entrances/" +
-                ClearanceClaims.User.Maintenance + "/{doorId}/{token}";
+                ClearanceClaims.User.Maintenance + "/{doorId}";
 
             public const string OpenServerStorageDoorForUser = Base + "/entrances/" +
-                ClearanceClaims.User.ServerStorage + "/{doorId}/{token}";
+                ClearanceClaims.User.ServerStorage + "/{doorId}";
 
             public const string OpenAdministrationDoorForUser = Base + "/entrances/" +
-                ClearanceClaims.User.Administration + "/{doorId}/{token}";
+                ClearanceClaims.User.Administration + "/{doorId}";
 
             public const string OpenDocumentArchiveDoorForUser = Base + "/entrances/" +
-                ClearanceClaims.User.DocumentArchive + "/{doorId}/{token}";
+                ClearanceClaims.User.DocumentArchive + "/{doorId}";
 
             public const string OpenManagementDoorForUser = Base + "/entrances/" +
-                ClearanceClaims.User.Management + "/{doorId}/{token}";
+                ClearanceClaims.User.Management + "/{doorId}";
         }
     }
 }

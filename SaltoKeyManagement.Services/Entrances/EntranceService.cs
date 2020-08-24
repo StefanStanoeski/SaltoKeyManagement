@@ -2,9 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SaltoKeyManagement.Data;
+using SaltoKeyManagement.Models.Contracts.Requests;
+using SaltoKeyManagement.Models.Contracts.Responses;
 using SaltoKeyManagement.Models.Domain;
 using SaltoKeyManagement.Models.Interfaces.Services.Entrances;
-using SaltoKeyManagement.Services.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,62 +14,30 @@ using System.Threading.Tasks;
 
 namespace SaltoKeyManagement.Services.Entrances
 {
-    public class EntranceService : BaseService, IEntranceServiceAsync
+    public class EntranceService : IEntranceServiceAsync
     {
         private readonly DataContext _dataContext;
-        private readonly UserManager<IdentityUser> _userManager;
 
-        public EntranceService(DataContext dataContext, UserManager<IdentityUser> userManager, TokenValidationParameters tokenValidationParameters)
-            :base(tokenValidationParameters)
+        public EntranceService(DataContext dataContext)
         {
             _dataContext = dataContext;
-            _userManager = userManager;
         }
 
-        public async Task<AuthorizationResult> OpenDoorForUser(string doorId, string token)
+        public async Task<Entrance> OpenDoorForUser(string doorId, string userId)
         {
-            var door = await _dataContext.DoorsDbSet.SingleOrDefaultAsync(d => d.Id == Guid.Parse(doorId));
+            var door = await _dataContext.DoorsDbSet.AsNoTracking().SingleOrDefaultAsync(d => d.Id == Guid.Parse(doorId));
 
-            if (door == null)
-            {
-                return new AuthorizationResult
-                {
-                    ErrorMessages = new[] { "No such door exists." }
-                };
-            }
-
-            var validatedToken = GetPrincipalFromToken(token);
-
-            if (validatedToken == null)
-            {
-                return new AuthorizationResult
-                {
-                    ErrorMessages = new[] { "Invalid token." }
-                };
-            }
-
-            var user = await _userManager.FindByIdAsync(validatedToken.Claims.Single(c => c.Type == "id").Value);
-            
             var entrance = new Entrance
             {
-                UserId = user.Id,
+                UserId = userId,
                 TimeOfEntry = DateTime.UtcNow,
-                DoorId = Guid.Parse(doorId)
+                DoorId = door.Id
             };
 
             await _dataContext.EntrancesDbSet.AddAsync(entrance);
             var created = await _dataContext.SaveChangesAsync();
 
-            var authResult = new AuthorizationResult
-            {
-                DoorName = door.Name,
-                Token = token
-            };
-
-            return created > 0 ? authResult : new AuthorizationResult
-            {
-                ErrorMessages = new[] { "New entrance record failed to be entered." }
-            };
+            return created > 0 ? entrance : null;
         }
     }
 }
